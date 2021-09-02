@@ -23,11 +23,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launchWhenResumed {
-            viewModel.transformedFlow.collect {
-                binding.transformedFlow.text = it.toString()
-            }
             viewModel.sourceFlow.collect {
                 binding.sourceFlow.text = it.toString()
+            }
+        }
+
+        lifecycleScope.launchWhenResumed {
+            viewModel.transformedFlow.collect {
+                binding.transformedFlow.text = it.toString()
             }
         }
     }
